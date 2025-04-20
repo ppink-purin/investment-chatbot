@@ -26,6 +26,7 @@ if st.button("상담 받기") and user_question:
 
         # GPT 응답 생성 및 파싱
         gpt_response = generate_gpt_response(user_question, combined_text, etf_count)
+        print(f"gpt_response:\n{gpt_response}")
         answer, etf_list = parse_gpt_response(gpt_response)
 
     # 결과 표시
