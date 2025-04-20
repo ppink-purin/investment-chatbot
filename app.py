@@ -3,7 +3,7 @@ from utils import (
     generate_google_query, google_search, scrape_text_from_url, generate_gpt_response, parse_gpt_response
 )
 
-st.title("📈 간단 투자상담 챗봇 (GPT + Google)")
+st.title("📈 간단챗봇테스트 (키움AIX팀)")
 
 user_question = st.text_input("💬 투자 관련 질문을 입력하세요:",
     placeholder="예) 관세전쟁 시대에 투자에 유리한 한국 ETF 3개 찾아줘")
