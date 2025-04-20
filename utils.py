@@ -70,7 +70,8 @@ def generate_gpt_response(question, scraped_text, etf_count=3):
     답변:
     """
     response = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo",
+        # model="gpt-3.5-turbo",
+        model="gpt-4o",
         messages=[{"role": "user", "content": prompt}],
         max_tokens=400,
         temperature=0.5,

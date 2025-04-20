@@ -34,5 +34,7 @@ if st.button("상담 받기") and user_question:
 
     st.subheader("📌 추천 ETF")
     for name, ticker in etf_list:
-        link = f"https://finance.naver.com/search/searchList.naver?query={ticker}"
+        # link = f"https://finance.naver.com/search/searchList.naver?query={ticker}"
+        link = f"https://finance.naver.com/item/main.naver?code={ticker}"
+        
         st.markdown(f"- [{name} ({ticker})]({link})", unsafe_allow_html=True)
