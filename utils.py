@@ -84,10 +84,15 @@ def parse_gpt_response(response_text):
     answer = lines[0].replace("답변:", "").strip()
     etfs = []
     for line in lines[2:]:
+        print(f"line: {line}")
         if line.strip():
-            etf_info = line.split('. ')[1]
-            name, ticker = etf_info.rsplit('(', 1)
-            ticker = ticker.replace(')', '').strip()
-            name = name.strip()
-            etfs.append((name, ticker))
+            try:
+                etf_info = line.split('. ')[1]
+                name, ticker = etf_info.rsplit('(', 1)
+                ticker = ticker.replace(')', '').strip()
+                name = name.strip()
+                etfs.append((name, ticker))
+            except:
+                print(f"exception: {line}")
+
     return answer, etfs
