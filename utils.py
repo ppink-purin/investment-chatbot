@@ -19,10 +19,10 @@ def generate_google_query(user_input):
     """
     response = openai.ChatCompletion.create(
         # model="gpt-4o-mini-2024-07-18",
-        model="gpt-4o",
+        model="gpt-4o-mini",
         messages=[{"role": "user", "content": prompt}],
-        max_tokens=20,
-        temperature=0.2,
+        max_tokens=1000,
+        temperature=0,
     )
     query = response.choices[0].message['content'].strip()
     return query
@@ -71,10 +71,10 @@ def generate_gpt_response(question, scraped_text, etf_count=3):
     """
     response = openai.ChatCompletion.create(
         # model="gpt-3.5-turbo",
-        model="gpt-4o",
+        model="gpt-4o-mini",
         messages=[{"role": "user", "content": prompt}],
-        max_tokens=400,
-        temperature=0.5,
+        max_tokens=1000,
+        temperature=0,
     )
     return response.choices[0].message['content'].strip()
 
