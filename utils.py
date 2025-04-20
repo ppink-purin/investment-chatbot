@@ -18,7 +18,8 @@ def generate_google_query(user_input):
     검색 질의어:
     """
     response = openai.ChatCompletion.create(
-        model="gpt-4o-mini-2024-07-18",
+        # model="gpt-4o-mini-2024-07-18",
+        model="gpt-4o",
         messages=[{"role": "user", "content": prompt}],
         max_tokens=20,
         temperature=0.2,
