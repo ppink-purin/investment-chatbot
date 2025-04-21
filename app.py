@@ -1,9 +1,11 @@
 import streamlit as st
 from utils import (
-    generate_google_query, google_search, scrape_text_from_url, generate_gpt_response, parse_gpt_response
+    get_st_secrets_brief, generate_google_query, google_search, scrape_text_from_url, generate_gpt_response, parse_gpt_response
 )
 
 st.title("📈 GPT로 직접 답변하는 키우Me 컨셉")
+
+st.write(get_st_secrets_brief)
 
 user_question = st.text_input("💬 투자 관련 질문을 입력하세요:",
     placeholder="예) 관세전쟁에 유리한 한국 ETF 3개 찾아줘")

@@ -16,6 +16,20 @@ openai.api_key = st.secrets["OPENAI_API_KEY"]
 GOOGLE_API_KEY = st.secrets["GOOGLE_API_KEY"]
 GOOGLE_CSE_ID = st.secrets["GOOGLE_CSE_ID"]
 
+# st.secrets 추출 정보 확인
+
+def get_st_secrets_brief():
+    brief_str = ""
+    if openai.api_key:
+        brief_str += openai.api_key[-5:]
+    if GOOGLE_API_KEY:
+        brief_str += " "
+        brief_str += GOOGLE_API_KEY[-5:]
+    if GOOGLE_CSE_ID:
+        brief_str += " "
+        brief_str += GOOGLE_CSE_ID[-5:]
+    return brief_str
+
 # GPT를 통해 Google 검색용 질의 생성
 def generate_google_query(user_input):
     prompt = f"""
