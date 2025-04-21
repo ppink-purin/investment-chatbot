@@ -44,7 +44,7 @@ if user_question:
     # st.write(combined_text)
     #st.write(response.json())
     with st.expander("🔽 구글 검색결과 자세히 보기"):
-        st.text(combined_text)
+        st.write(combined_text)
 
     st.subheader("🔖 상담 답변")
     st.info(answer)
