@@ -3,7 +3,7 @@ from utils import (
     generate_google_query, google_search, scrape_text_from_url, generate_gpt_response, parse_gpt_response
 )
 
-st.title("📈 간단챗봇테스트 (키움AIX팀)")
+st.title("📈 GPT기반 ETF추천 컨셉 로직 (키움AIX팀)")
 
 user_question = st.text_input("💬 투자 관련 질문을 입력하세요:",
     placeholder="예) 관세전쟁 시대에 투자에 유리한 한국 ETF 3개 찾아줘")
@@ -21,7 +21,7 @@ if st.button("상담 받기") and user_question:
 
         # ETF 개수 파악
         import re
-        match = re.search(r'(\d+)개', user_question)
+        match = re.search(r'(\d+)(개|종류|종|가지)', user_question)
         etf_count = int(match.group(1)) if match else 3
 
         # GPT 응답 생성 및 파싱
@@ -30,10 +30,17 @@ if st.button("상담 받기") and user_question:
         answer, etf_list = parse_gpt_response(gpt_response)
 
     # 결과 표시
+
+    st.subheader("🔍 구글 검색어")
+    st.info(search_query)
+
+    st.subheader("📝 구글 검색결과")
+    st.info(combined_text)
+
     st.subheader("🔖 상담 답변")
     st.info(answer)
 
-    st.subheader("📌 추천 ETF")
+    st.subheader(f"📌 추천 ETF ({etf_count}개 요청 -> {len(etf_list)}개 검출)")
     for name, ticker in etf_list:
         # link = f"https://finance.naver.com/search/searchList.naver?query={ticker}"
         link = f"https://finance.naver.com/item/main.naver?code={ticker}"

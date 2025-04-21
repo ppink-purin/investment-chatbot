@@ -13,7 +13,7 @@ GOOGLE_CSE_ID = os.getenv("GOOGLE_CSE_ID")
 # GPT를 통해 Google 검색용 질의 생성
 def generate_google_query(user_input):
     prompt = f"""
-    아래 질문을 구글 검색에 유리한 형태의 명료한 검색 질의어로 변경해줘:
+    아래 질문을 ETF 종목 탐색에 적합한 구글 검색에 유리한 형태의 명료한 검색 질의어로 변경해줘:
     질문: {user_input}
     검색 질의어:
     """
@@ -51,20 +51,24 @@ def scrape_text_from_url(url):
 def generate_gpt_response(question, scraped_text, etf_count=3):
     prompt = f"""
     다음은 고객의 투자 질문이다:
-    "{question}"
+    <질문>
+    {question}
+    </질문>
 
     다음은 구글 검색을 통해 얻은 관련 정보이다:
-    "{scraped_text}"
+    <정보>
+    {scraped_text}
+    </정보>
 
     위 정보를 기반으로 고객 질문에 600자 이내의 간결한 답변을 해줘.
-    또한 답변과 관련하여 고객이 명시한 ETF 개수가 있으면 정확히 그 수만큼, 없으면 질문 성격상 최소 1개에서 최대 3개의 한국 상장 ETF 종목과 티커명을 함께 추천해줘.
+    또한 답변과 관련하여 고객이 명시한 ETF 개수가 있으면 정확히 그 수만큼, 없으면 질문 성격상 최소 1개에서 최대 {etf_count}개의 한국 상장 ETF 종목과 티커명을 함께 추천해줘.
     
     반드시 다음 형식을 준수해 응답해. 다음 형식을 준수해서 응답하지 않으면 이후 진행이 이루어지지 않으니 답변 형식은 필수적으로 준수해야해.
     
     답변: (간략한 답변 내용)
     ETF추천:
-    1. 종목명 (티커)
-    2. 종목명 (티커)
+    1. 종목명 [[티커]]
+    2. 종목명 [[티커]]
     (종목수는 요청에 맞게)
 
     답변:
@@ -88,8 +92,8 @@ def parse_gpt_response(response_text):
         if line.strip():
             try:
                 etf_info = line.split('. ')[1]
-                name, ticker = etf_info.rsplit('(', 1)
-                ticker = ticker.replace(')', '').strip()
+                name, ticker = etf_info.rsplit('[[', 1)
+                ticker = ticker.replace(']]', '').strip()
                 name = name.strip()
                 etfs.append((name, ticker))
             except:
