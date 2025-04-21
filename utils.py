@@ -3,12 +3,18 @@ import openai
 import requests
 from dotenv import load_dotenv
 from bs4 import BeautifulSoup
+import streamlit as st
+
 
 load_dotenv()
 
-openai.api_key = os.getenv("OPENAI_API_KEY")
-GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
-GOOGLE_CSE_ID = os.getenv("GOOGLE_CSE_ID")
+# openai.api_key = os.getenv("OPENAI_API_KEY")
+# GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
+# GOOGLE_CSE_ID = os.getenv("GOOGLE_CSE_ID")
+
+openai.api_key = st.secrets["OPENAI_API_KEY"]
+GOOGLE_API_KEY = st.secrets["GOOGLE_API_KEY"]
+GOOGLE_CSE_ID = st.secrets["GOOGLE_CSE_ID"]
 
 # GPT를 통해 Google 검색용 질의 생성
 def generate_google_query(user_input):
