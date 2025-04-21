@@ -5,7 +5,7 @@ from utils import (
 
 st.title("📈 GPT로 직접 답변하는 키우Me 컨셉")
 
-st.write(f"st.secrets: {get_st_secrets_brief()}")
+# st.write(f"st.secrets: {get_st_secrets_brief()}")
 
 user_question = st.text_input("💬 투자 관련 질문을 입력하세요:",
     placeholder="예) 관세전쟁에 유리한 한국 ETF 3개 찾아줘")
