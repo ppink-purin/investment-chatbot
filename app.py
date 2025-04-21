@@ -3,10 +3,10 @@ from utils import (
     generate_google_query, google_search, scrape_text_from_url, generate_gpt_response, parse_gpt_response
 )
 
-st.title("📈 GPT기반 ETF추천 컨셉 로직 (키움AIX팀)")
+st.title("📈 GPT로 직접 답변하는 키우Me 컨셉")
 
 user_question = st.text_input("💬 투자 관련 질문을 입력하세요:",
-    placeholder="예) 관세전쟁 시대에 투자에 유리한 한국 ETF 3개 찾아줘")
+    placeholder="예) 관세전쟁에 유리한 한국 ETF 3개 찾아줘")
 
 if st.button("상담 받기") and user_question:
     with st.spinner("🔍 검색 및 분석 중입니다..."):
