@@ -37,7 +37,7 @@ if st.button("상담 받기") and user_question:
     st.info(search_query)
 
     st.subheader(f"📝 구글 검색결과 (status={status_code})")
-    st.info(combined_text)
+    st.info(response.json())
 
     st.subheader("🔖 상담 답변")
     st.info(answer)
