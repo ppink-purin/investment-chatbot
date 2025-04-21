@@ -36,8 +36,8 @@ if st.button("상담 받기") and user_question:
     st.subheader("🔍 구글 검색어")
     st.info(search_query)
 
-    st.subheader(f"📝 구글 검색결과 (status={status_code})")
-    st.info(response.json())
+    st.subheader(f"📝 구글 검색결과 (status={status_code}, urls={len(urls)})")
+    st.info(combined_text)
 
     st.subheader("🔖 상담 답변")
     st.info(answer)
