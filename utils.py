@@ -38,7 +38,8 @@ def google_search(query, num_results=3):
     }
     response = requests.get(search_url, params=params)
     response_json = response.json()
-    links = [item['link'] for item in response.get('items', [])]
+
+    links = [item['link'] for item in response_json.get('items', [])]
     return links, response
 
 # 웹페이지 내용 추출
