@@ -36,9 +36,10 @@ def google_search(query, num_results=3):
         "q": query,
         "num": num_results
     }
-    response = requests.get(search_url, params=params).json()
+    response = requests.get(search_url, params=params)
+    response_json = response.json()
     links = [item['link'] for item in response.get('items', [])]
-    return links
+    return links, response
 
 # 웹페이지 내용 추출
 def scrape_text_from_url(url):

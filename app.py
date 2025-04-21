@@ -14,7 +14,9 @@ if st.button("상담 받기") and user_question:
         search_query = generate_google_query(user_question)
         
         # 구글 검색 실행 및 텍스트 수집
-        urls = google_search(search_query)
+        urls, response = google_search(search_query)
+        status_code = response.status_code
+
         combined_text = ""
         for url in urls:
             combined_text += scrape_text_from_url(url) + " "
@@ -34,7 +36,7 @@ if st.button("상담 받기") and user_question:
     st.subheader("🔍 구글 검색어")
     st.info(search_query)
 
-    st.subheader("📝 구글 검색결과")
+    st.subheader(f"📝 구글 검색결과 (status={status_code})")
     st.info(combined_text)
 
     st.subheader("🔖 상담 답변")
