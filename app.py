@@ -40,9 +40,11 @@ if user_question:
     st.info(search_query)
 
     # st.subheader(f"📝 구글 검색결과 (status={status_code}, urls={len(urls)})")
-    st.subheader(f"📝 구글 검색결과")
-    st.write(combined_text)
+    # st.subheader(f"📝 구글 검색결과")
+    # st.write(combined_text)
     #st.write(response.json())
+    with st.expander("🔽 구글 검색결과 자세히 보기"):
+        st.text(combined_text)
 
     st.subheader("🔖 상담 답변")
     st.info(answer)
