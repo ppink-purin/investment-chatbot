@@ -69,7 +69,7 @@ def scrape_text_from_url(url):
     response = requests.get(url)
     soup = BeautifulSoup(response.text, "html.parser")
     texts = soup.stripped_strings
-    return " ".join(texts)[:3000]  # GPT 최대 토큰 제한 고려
+    return " ".join(texts)[:1000]  # GPT 최대 토큰 제한 고려
 
 # GPT API로 투자 질문에 대한 응답 생성
 def generate_gpt_response(question, scraped_text, etf_count=3):
